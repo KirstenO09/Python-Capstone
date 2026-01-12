@@ -1,0 +1,498 @@
+/* ============================================
+   INSPIRATION GALLERY STYLES
+   ============================================ */
+
+/* Container */
+.gallery-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Header */
+.gallery-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.gallery-header h1 {
+    font-size: 2.8rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    font-weight: 400;
+}
+
+/* ============================================
+   SEARCH FORM
+   ============================================ */
+
+.search-form {
+    max-width: 700px;
+    margin: 0 auto 30px;
+}
+
+.search-wrapper {
+    display: flex;
+    gap: 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+    border-radius: 50px;
+    overflow: hidden;
+    background: white;
+    transition: box-shadow 0.3s ease;
+}
+
+.search-wrapper:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.search-input {
+    flex: 1;
+    padding: 18px 28px;
+    border: 2px solid #e0e0e0;
+    border-right: none;
+    border-radius: 50px 0 0 50px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #5f27cd;
+}
+
+.search-btn {
+    padding: 18px 40px;
+    background: linear-gradient(135deg, #5f27cd 0%, #341f97 100%);
+    color: white;
+    border: none;
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    background: linear-gradient(135deg, #341f97 0%, #5f27cd 100%);
+    transform: scale(1.02);
+}
+
+.search-btn:active {
+    transform: scale(0.98);
+}
+
+.search-btn span {
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+/* ============================================
+   SEARCH SUGGESTIONS
+   ============================================ */
+
+.search-suggestions {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.search-suggestions p {
+    color: #7f8c8d;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.suggestion-tag {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 6px;
+    background-color: #f5f6fa;
+    color: #2c3e50;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.suggestion-tag:hover {
+    background: linear-gradient(135deg, #5f27cd 0%, #341f97 100%);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(95, 39, 205, 0.3);
+}
+
+/* ============================================
+   RESULTS INFO & ERRORS
+   ============================================ */
+
+.results-info {
+    text-align: center;
+    margin-bottom: 35px;
+    color: #555;
+    font-size: 1.15rem;
+}
+
+.results-info strong {
+    color: #5f27cd;
+    font-weight: 700;
+}
+
+.error-message {
+    max-width: 650px;
+    margin: 25px auto;
+    padding: 25px;
+    background: linear-gradient(135deg, #fee 0%, #fdd 100%);
+    border-left: 5px solid #e74c3c;
+    border-radius: 10px;
+    color: #c0392b;
+}
+
+.error-message p {
+    margin: 8px 0;
+    font-weight: 500;
+}
+
+.error-details {
+    font-size: 0.9rem;
+    color: #95a5a6;
+    margin-top: 12px;
+    font-weight: 400;
+}
+
+/* ============================================
+   PHOTO GRID
+   ============================================ */
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 28px;
+    margin-bottom: 60px;
+}
+
+.photo-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.photo-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.photo-wrapper {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    background: linear-gradient(135deg, #f5f6fa 0%, #dfe4ea 100%);
+}
+
+.photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.photo-card:hover .photo-wrapper img {
+    transform: scale(1.12);
+}
+
+/* ============================================
+   PHOTO OVERLAY
+   ============================================ */
+
+.photo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(95, 39, 205, 0.85) 0%, rgba(52, 31, 151, 0.85) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.photo-card:hover .photo-overlay {
+    opacity: 1;
+}
+
+.view-original-btn {
+    padding: 14px 32px;
+    background-color: white;
+    color: #5f27cd;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.view-original-btn:hover {
+    background: #5f27cd;
+    color: white;
+    transform: scale(1.15);
+    box-shadow: 0 8px 30px rgba(95, 39, 205, 0.5);
+}
+
+/* ============================================
+   PHOTO INFO
+   ============================================ */
+
+.photo-info {
+    padding: 18px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.photographer {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+.photographer a {
+    color: #5f27cd;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.photographer a:hover {
+    color: #341f97;
+    text-decoration: underline;
+}
+
+.photo-stats {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.stat {
+    color: #666;
+    font-weight: 500;
+}
+
+.photo-tags {
+    margin: 8px 0 0 0;
+    font-size: 12px;
+    color: #777;
+    font-style: italic;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ============================================
+   NO RESULTS
+   ============================================ */
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 20px;
+    border: 2px dashed #dee2e6;
+}
+
+.no-results-icon {
+    font-size: 5rem;
+    margin-bottom: 20px;
+}
+
+.no-results-text {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.no-results-hint {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+}
+
+/* ============================================
+   PAGINATION
+   ============================================ */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin: 60px 0;
+}
+
+.page-btn {
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #5f27cd 0%, #341f97 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(95, 39, 205, 0.3);
+}
+
+.page-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(95, 39, 205, 0.5);
+}
+
+.page-btn:active {
+    transform: translateY(-2px);
+}
+
+.page-info {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #2c3e50;
+    padding: 0 20px;
+}
+
+/* ============================================
+   API ATTRIBUTION
+   ============================================ */
+
+.api-attribution {
+    text-align: center;
+    margin-top: 70px;
+    padding-top: 35px;
+    border-top: 2px solid #e0e0e0;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.api-attribution a {
+    color: #5f27cd;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.api-attribution a:hover {
+    color: #341f97;
+    text-decoration: underline;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .photo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-container {
+        padding: 30px 15px;
+    }
+
+    .gallery-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 18px;
+    }
+
+    .search-wrapper {
+        flex-direction: column;
+        border-radius: 20px;
+    }
+
+    .search-input {
+        border-radius: 20px 20px 0 0;
+        border: 2px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .search-btn {
+        border-radius: 0 0 20px 20px;
+    }
+
+    .suggestion-tag {
+        font-size: 13px;
+        padding: 8px 16px;
+        margin: 4px;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .page-btn {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-container {
+        padding: 20px 10px;
+    }
+
+    .photo-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .gallery-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+    }
+
+    .search-input,
+    .search-btn {
+        padding: 15px 20px;
+    }
+
+    .no-results {
+        padding: 50px 15px;
+    }
+
+    .no-results-icon {
+        font-size: 3.5rem;
+    }
+
+    .no-results-text {
+        font-size: 1.2rem;
+    }
+}

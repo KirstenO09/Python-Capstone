@@ -1,0 +1,92 @@
+{% extends 'appointments/base.html' %}
+
+{% block title %}Home - Hair Salon{% endblock %}
+
+{% block content %}
+<div style="text-align: center; margin-bottom: 40px;">
+    <h1 style="font-size: 42px; margin-bottom: 15px;">Welcome to Our Salon</h1>
+    <p style="font-size: 20px; color: #666;">
+        Choose from our selection of professional hairstyling services
+    </p>
+</div>
+
+<!-- Hairstyle Cards Grid -->
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; margin-top: 30px;">
+    {% for hairstyle in hairstyles %}
+    <div class="hairstyle-card" style="border: 2px solid #e0e0e0; border-radius: 15px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; background: white;">
+        
+        <!-- Hairstyle Image -->
+        {% if hairstyle.image_url %}
+        <div style="width: 100%; height: 250px; overflow: hidden; background-color: #f0f0f0;">
+            <img src="{{ hairstyle.image_url }}" 
+                 alt="{{ hairstyle.name }}"
+                 style="width: 100%; height: 100%; object-fit: cover;"
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/667eea/ffffff?text={{ hairstyle.name }}';">
+        </div>
+        {% else %}
+        <!-- Placeholder if no image -->
+        <div style="width: 100%; height: 250px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;">
+            <span style="font-size: 60px;">💇‍♀️</span>
+        </div>
+        {% endif %}
+        
+        <!-- Hairstyle Details -->
+        <div style="padding: 20px;">
+            <h3 style="color: #667eea; margin-bottom: 10px; font-size: 22px;">
+                {{ hairstyle.name }}
+            </h3>
+            
+            <p style="color: #666; margin-bottom: 15px; min-height: 60px; line-height: 1.5;">
+                {{ hairstyle.description|truncatewords:20 }}
+            </p>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+                <div>
+                    <div style="font-size: 14px; color: #999; margin-bottom: 5px;">Duration</div>
+                    <div style="font-weight: bold; color: #333;">{{ hairstyle.duration_minutes }} min</div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 14px; color: #999; margin-bottom: 5px;">Price</div>
+                    <div style="font-size: 28px; color: #28a745; font-weight: bold;">
+                        ${{ hairstyle.price }}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book This Style Button (pre-selects this hairstyle in form) -->
+            <a href="{% url 'create_appointment' %}?hairstyle={{ hairstyle.id }}" 
+               class="book-btn"
+               style="display: block; text-align: center; background-color: #667eea; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: background-color 0.3s;">
+                Book This Style
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Contact Section at Bottom -->
+<div style="text-align: center; margin-top: 50px; padding: 40px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; color: white;">
+    <h2 style="font-size: 32px; margin-bottom: 15px; color: white;">Have Questions?</h2>
+    <p style="font-size: 18px; margin-bottom: 25px; opacity: 0.9;">
+        Not sure which style is right for you? Need to discuss special requirements?<br>Contact us for special inquiries.
+    </p>
+
+    <a href="{% url 'contact' %}"
+       class="btn"
+       style="font-size: 18px; padding: 15px 40px; background-color: white; color: #667eea;">
+        📞 Contact Us
+    </a>
+</div>
+
+<style>
+    /* Hover effects */
+    .hairstyle-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .book-btn:hover {
+        background-color: #5568d3 !important;
+    }
+</style>
+{% endblock %}

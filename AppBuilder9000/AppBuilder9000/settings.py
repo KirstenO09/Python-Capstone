@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_bootstrap5',
     'crispy_forms',
+    'appointments',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +134,6 @@ FIXTURE_DIRS = (
 )
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+# Pixabay API Key
+PIXABAY_API_KEY = config('PIXABAY_API_KEY')
