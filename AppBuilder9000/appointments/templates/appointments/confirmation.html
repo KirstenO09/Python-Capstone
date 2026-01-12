@@ -1,10 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'appointments/base.html' %}
+
+{% block title %}Booking Confirmed{% endblock %}
+
+{% block content %}
+<div style="text-align: center; padding: 40px;">
+    <div style="font-size: 80px; margin-bottom: 20px;">✅</div>
+    <h1 style="color: #28a745;">Booking Confirmed!</h1>
+    <p style="font-size: 18px; color: #666; margin: 20px 0;">
+        Thank you for your booking. We've sent a confirmation to your email.
+    </p>
+</div>
+
+<div style="max-width: 600px; margin: 0 auto; background-color: #f8f9fa; padding: 30px; border-radius: 10px;">
+    <h2 style="margin-bottom: 20px; color: #333;">Appointment Details</h2>
+    
+    <div style="margin-bottom: 15px;">
+        <strong>Customer:</strong> {{ appointment.customer_name }}
+    </div>
+    <div style="margin-bottom: 15px;">
+        <strong>Email:</strong> {{ appointment.customer_email }}
+    </div>
+    <div style="margin-bottom: 15px;">
+        <strong>Service:</strong> {{ appointment.hairstyle.name }}
+    </div>
+    <div style="margin-bottom: 15px;">
+        <strong>Date:</strong> {{ appointment.appointment_date }}
+    </div>
+    <div style="margin-bottom: 15px;">
+        <strong>Time:</strong> {{ appointment.get_appointment_time_display }}
+    </div>
+    <div style="margin-bottom: 15px;">
+        <strong>Duration:</strong> {{ appointment.hairstyle.duration_minutes }} minutes
+    </div>
+    <div style="margin-bottom: 15px; padding-top: 15px; border-top: 2px solid #ddd;">
+        <strong style="font-size: 20px;">Total Cost:</strong> 
+        <span style="font-size: 24px; color: #28a745; font-weight: bold;">
+            ${{ appointment.get_cost }}
+        </span>
+    </div>
+    
+    {% if appointment.notes %}
+    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+        <strong>Special Requests:</strong>
+        <p style="color: #666; margin-top: 10px;">{{ appointment.notes }}</p>
+    </div>
+    {% endif %}
+</div>
+
+<div style="text-align: center; margin-top: 40px;">
+    <a href="{% url 'home' %}" class="btn">🏠 Back to Home</a>
+    <a href="{% url 'create_appointment' %}" class="btn btn-secondary" style="margin-left: 10px;">📅 Book Another</a>
+</div>
+{% endblock %}

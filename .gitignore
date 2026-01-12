@@ -6,9 +6,11 @@ laptop_venv/
 *.log
 *.pot
 *.pyc
-__pycache__
+__pycache__/
 db.sqlite3
 media
+*.sqlite3
+local_settings.py
 
 # Backup files #
 *.bak
@@ -16,6 +18,9 @@ media
 # Python #
 *.py[cod]
 *$py.class
+*.so
+.Python
+
 
 # Distribution / packaging
 .Python build/
@@ -66,13 +71,20 @@ celerybeat-schedule.*
 
 # Environments
 .env
+*.env
 .venv
 env/
 laptop_venv/
 ENV/
 env.bak/
 venv.bak/
-venv
+venv/
+pyVenv/
+
+# Node
+node_modules/
+package.json
+package-lock.json
 
 # mkdocs documentation
 /site
@@ -105,9 +117,13 @@ MainProject/log.json
 *.idea
 
 # Ignore all migrations #
-/AppBuilder9000/*/migrations/*
+*/migrations/__pycache__/
 
-requirements.txt
+
 
 # ItemsApp #
 AppBuilder9000/ItemsApp/data/*.json
+
+# Static files
+/staticfiles/
+/static/

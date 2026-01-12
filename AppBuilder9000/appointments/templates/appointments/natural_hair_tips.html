@@ -1,0 +1,42 @@
+{% extends "appointments/base.html" %}
+
+{% block title %}Natural Hair Care Tips{% endblock %}
+
+{% block content %}
+<div class="tips-container">
+    <h1>🌿 Natural Hair Care Tips for Beginners</h1>
+    <p class="subtitle">
+        Curated beginner-friendly tips for textured and natural hair, scraped from
+        a trusted natural hair resource.
+    </p>
+
+    {% if error %}
+        <div class="error-message">
+            <p>{{ error }}</p>
+        </div>
+    {% endif %}
+
+    {% if tips %}
+        <div class="tips-grid">
+            {% for tip in tips %}
+            <div class="tip-card">
+                <h2>{{ tip.title }}</h2>
+                <div class="tip-body">
+                    {{ tip.body|safe }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        {% if not error %}
+        <p>No tips found at the moment. Please check back later.</p>
+        {% endif %}
+    {% endif %}
+
+    <p class="source-note">
+        Source: <a href="{{ source_url }}" target="_blank" rel="noopener">
+            View full article on NaturallyCurly
+        </a>
+    </p>
+</div>
+{% endblock %}

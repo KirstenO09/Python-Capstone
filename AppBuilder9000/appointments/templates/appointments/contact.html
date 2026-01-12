@@ -1,10 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'appointments/base.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div style="max-width: 700px; margin: 0 auto;">
+    <h1>Contact Us</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+        <h3 style="margin-bottom: 15px; color: #667eea;">💇‍♀️ Get in Touch</h3>
+        <p style="color: #666; line-height: 1.6;">
+            Have questions about our services? Need to discuss special requirements or allergies? 
+            Want to know more about a particular hairstyle? We're here to help!
+        </p>
+        <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+            <p style="margin-bottom: 10px;">
+                <strong>📞 Phone:</strong> (555) 123-4567
+            </p>
+            <p style="margin-bottom: 10px;">
+                <strong>📧 Email:</strong> info@hairsalon.com
+            </p>
+            <p>
+                <strong>🕐 Hours:</strong> Mon-Sat 9:00 AM - 6:00 PM
+            </p>
+        </div>
+    </div>
+    
+    <h2 style="margin-bottom: 20px;">Send Us a Message</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">
+                {{ form.name.label }}
+            </label>
+            {{ form.name }}
+            {% if form.name.errors %}
+                <span style="color: red; font-size: 14px;">{{ form.name.errors }}</span>
+            {% endif %}
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">
+                {{ form.email.label }}
+            </label>
+            {{ form.email }}
+            {% if form.email.errors %}
+                <span style="color: red; font-size: 14px;">{{ form.email.errors }}</span>
+            {% endif %}
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">
+                {{ form.phone.label }}
+            </label>
+            {{ form.phone }}
+            <small style="display: block; color: #666; margin-top: 5px;">
+                We'll call you back if you prefer phone contact
+            </small>
+            {% if form.phone.errors %}
+                <span style="color: red; font-size: 14px;">{{ form.phone.errors }}</span>
+            {% endif %}
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">
+                {{ form.subject.label }}
+            </label>
+            {{ form.subject }}
+            {% if form.subject.errors %}
+                <span style="color: red; font-size: 14px;">{{ form.subject.errors }}</span>
+            {% endif %}
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">
+                {{ form.message.label }}
+            </label>
+            {{ form.message }}
+            {% if form.message.errors %}
+                <span style="color: red; font-size: 14px;">{{ form.message.errors }}</span>
+            {% endif %}
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <button type="submit" class="btn">📤 Send Message</button>
+            <a href="{% url 'home' %}" class="btn btn-secondary" style="margin-left: 10px;">✗ Cancel</a>
+        </div>
+    </form>
+</div>
+
+<style>
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+    }
+</style>
+{% endblock %}

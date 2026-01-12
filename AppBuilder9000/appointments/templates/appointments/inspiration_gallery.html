@@ -1,0 +1,139 @@
+{% extends "appointments/base.html" %}
+{% load static %}
+
+{% block title %}Hairstyle Inspiration Gallery{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/inspire-styles.css' %}">
+
+<div class="gallery-container">
+
+    <!-- Header Section -->
+    <div class="gallery-header">
+        <h1>✨ Hairstyle Inspiration Gallery</h1>
+        <p class="subtitle">Discover beautiful hairstyles and find your next look</p>
+    </div>
+
+    <!-- Search Form -->
+    <form method="GET" action="{% url 'inspiration_gallery' %}" class="search-form">
+        <div class="search-wrapper">
+            <input type="text"
+                   name="search"
+                   placeholder="Search hairstyles (e.g., braids, curly hair, locs...)"
+                   value="{{ query }}"
+                   class="search-input"
+                   required>
+            <button type="submit" class="search-btn">
+                <span>🔍</span> Search
+            </button>
+        </div>
+    </form>
+
+    <!-- Quick Search Suggestions -->
+    <div class="search-suggestions">
+        <p>Popular searches:</p>
+        <a href="?search=braids" class="suggestion-tag">Braids</a>
+        <a href="?search=natural+hair" class="suggestion-tag">Natural Hair</a>
+        <a href="?search=locs" class="suggestion-tag">Locs</a>
+        <a href="?search=curly+hair" class="suggestion-tag">Curly Hair</a>
+        <a href="?search=short+hair" class="suggestion-tag">Short Hair</a>
+        <a href="?search=updo" class="suggestion-tag">Updos</a>
+        <a href="?search=ponytail" class="suggestion-tag">Ponytail</a>
+        <a href="?search=afro" class="suggestion-tag">Afro</a>
+    </div>
+
+    <!-- Error Message -->
+    {% if error %}
+    <div class="error-message">
+        <p>⚠️ {{ error }}</p>
+        <p class="error-details">Please check your internet connection or try again later.</p>
+    </div>
+    {% endif %}
+
+    <!-- Results Count -->
+    {% if total %}
+    <div class="results-info">
+        <p>Found <strong>{{ total|floatformat:0 }}</strong> results for "<strong>{{ query }}</strong>"</p>
+    </div>
+    {% endif %}
+
+    <!-- Photo Grid -->
+    <div class="photo-grid">
+        {% for photo in photos %}
+        <div class="photo-card">
+
+            <div class="photo-wrapper">
+                <img src="{{ photo.largeImageURL }}"
+                     alt="{{ photo.tags }}"
+                     loading="lazy">
+
+                <div class="photo-overlay">
+                    <a href="{{ photo.pageURL }}"
+                       target="_blank"
+                       class="view-original-btn">
+                        View on Pixabay
+                    </a>
+                </div>
+            </div>
+
+            <!-- Photo Info -->
+            <div class="photo-info">
+                <p class="photographer">
+                    📸 Photo by
+                    <a href="https://pixabay.com/users/{{ photo.user }}-{{ photo.user_id }}/"
+                       target="_blank">
+                        {{ photo.user }}
+                    </a>
+                </p>
+                <p class="photo-stats">
+                    <span class="stat">👁️ {{ photo.views }}</span>
+                    <span class="stat">❤️ {{ photo.likes }}</span>
+                </p>
+                {% if photo.tags %}
+                <p class="photo-tags">
+                    🏷️ {{ photo.tags }}
+                </p>
+                {% endif %}
+            </div>
+
+        </div>
+        {% empty %}
+        <div class="no-results">
+            <p class="no-results-icon">😕</p>
+            <p class="no-results-text">No photos found for "{{ query }}"</p>
+            <p class="no-results-hint">
+                Try searching for: braids, natural hair, curly hair, locs, or updos
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if photos and total_pages > 1 %}
+    <div class="pagination">
+        {% if page > 1 %}
+        <a href="?search={{ query }}&page={{ page|add:'-1' }}" class="page-btn prev-btn">
+            ← Previous
+        </a>
+        {% endif %}
+
+        <span class="page-info">Page {{ page }} of {{ total_pages }}</span>
+
+        {% if page < total_pages %}
+        <a href="?search={{ query }}&page={{ page|add:'1' }}" class="page-btn next-btn">
+            Next →
+        </a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- Pixabay Attribution -->
+    <div class="api-attribution">
+        <p>
+            Photos provided by
+            <a href="https://pixabay.com/" target="_blank">Pixabay</a>
+        </p>
+    </div>
+
+</div>
+{% endblock %}

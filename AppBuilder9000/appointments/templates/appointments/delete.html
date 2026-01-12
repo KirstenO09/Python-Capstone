@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'appointments/base.html' %}
+
+{% block title %}Cancel Appointment{% endblock %}
+
+{% block content %}
+<h1>Cancel Appointment</h1>
+
+<div style="background-color: #fff3cd; border: 1px solid #ffc107; padding: 20px; border-radius: 5px; margin: 20px 0;">
+    <p style="font-size: 18px; margin-bottom: 15px;">
+        ⚠️ Are you sure you want to cancel this appointment?
+    </p>
+
+    <div style="background-color: white; padding: 20px; border-radius: 5px; margin-top: 15px;">
+        <p><strong>Customer:</strong> {{ appointment.customer_name }}</p>
+        <p><strong>Email:</strong> {{ appointment.customer_email }}</p>
+        <p><strong>Service:</strong> {{ appointment.hairstyle.name }}</p>
+        <p><strong>Date:</strong> {{ appointment.appointment_date }}</p>
+        <p><strong>Time:</strong> {{ appointment.get_appointment_time_display }}</p>
+        <p><strong>Cost:</strong> ${{ appointment.get_cost }}</p>
+    </div>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">🗑️ Yes, Cancel Appointment</button>
+    <a href="{% url 'appointment_list' %}" class="btn btn-secondary" style="margin-left: 10px;">
+        ← No, Keep It
+    </a>
+</form>
+{% endblock %}

@@ -1,10 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'appointments/base.html' %}
+
+{% block title %}Book Appointment{% endblock %}
+
+{% block content %}
+<h1>Book Your Appointment</h1>
+
+<form method="post" style="max-width: 600px;">
+    {% csrf_token %}
+
+    <div style="margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: bold;">
+            {{ form.customer_name.label }}
+        </label>
+        {{ form.customer_name }}
+        {% if form.customer_name.errors %}
+            <span style="color: red; font-size: 14px;">{{ form.customer_name.errors }}</span>
+        {% endif %}
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: bold;">
+            {{ form.customer_email.label }}
+        </label>
+        {{ form.customer_email }}
+        {% if form.customer_email.errors %}
+            <span style="color: red; font-size: 14px;">{{ form.customer_email.errors }}</span>
+        {% endif %}
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: bold;">
+            {{ form.hairstyle.label }}
+        </label>
+        {{ form.hairstyle }}
+        <small style="display: block; color: #666; margin-top: 5px;">
+            💡 Price will be calculated based on your selection
+        </small>
+        {% if form.hairstyle.errors %}
+            <span style="color: red; font-size: 14px;">{{ form.hairstyle.errors }}</span>
+        {% endif %}
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: bold;">
+            {{ form.appointment_date.label }}
+        </label>
+        {{ form.appointment_date }}
+        {% if form.appointment_date.errors %}
+            <span style="color: red; font-size: 14px;">{{ form.appointment_date.errors }}</span>
+        {% endif %}
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: bold;">
+            {{ form.appointment_time.label }}
+        </label>
+        {{ form.appointment_time }}
+        {% if form.appointment_time.errors %}
+            <span style="color: red; font-size: 14px;">{{ form.appointment_time.errors }}</span>
+        {% endif %}
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: bold;">
+            {{ form.notes.label }}
+        </label>
+        {{ form.notes }}
+        {% if form.notes.errors %}
+            <span style="color: red; font-size: 14px;">{{ form.notes.errors }}</span>
+        {% endif %}
+    </div>
+
+    <div style="margin-top: 30px;">
+        <button type="submit" class="btn">✓ Confirm Booking</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary" style="margin-left: 10px;">✗ Cancel</a>
+    </div>
+</form>
+
+<style>
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+    }
+</style>
+{% endblock %}

@@ -14,12 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+# AppBuilder9000/urls.py
 from django.contrib import admin
 from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    path("admin/", admin.site.urls),
 
+    # Project landing page (App Directory)
+    path("", views.project_home, name="project_home"),
+
+    # All front-end routes come from the appointments app at the root
+    # App lives at /appointments/
+    path("appointments/", include("appointments.urls")),
 ]
+

@@ -1,10 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'appointments/base.html' %}
+
+{% block title %}Message Sent{% endblock %}
+
+{% block content %}
+<div style="text-align: center; padding: 40px;">
+    <div style="font-size: 80px; margin-bottom: 20px;">✉️</div>
+    <h1 style="color: #28a745;">Message Sent Successfully!</h1>
+    <p style="font-size: 18px; color: #666; margin: 20px 0;">
+        Thank you for contacting us. We'll get back to you within 24 hours.
+    </p>
+</div>
+
+<div style="max-width: 600px; margin: 0 auto; background-color: #f8f9fa; padding: 30px; border-radius: 10px;">
+    <h2 style="margin-bottom: 20px; color: #333;">Your Message Details</h2>
+    
+    <div style="margin-bottom: 15px;">
+        <strong>Name:</strong> {{ inquiry.name }}
+    </div>
+    <div style="margin-bottom: 15px;">
+        <strong>Email:</strong> {{ inquiry.email }}
+    </div>
+    {% if inquiry.phone %}
+    <div style="margin-bottom: 15px;">
+        <strong>Phone:</strong> {{ inquiry.phone }}
+    </div>
+    {% endif %}
+    <div style="margin-bottom: 15px;">
+        <strong>Subject:</strong> {{ inquiry.subject }}
+    </div>
+    <div style="margin-bottom: 15px; padding-top: 15px; border-top: 1px solid #ddd;">
+        <strong>Message:</strong>
+        <p style="color: #666; margin-top: 10px; white-space: pre-wrap;">{{ inquiry.message }}</p>
+    </div>
+    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+        <strong>Submitted:</strong> {{ inquiry.submitted_at|date:"F d, Y g:i A" }}
+    </div>
+</div>
+
+<div style="text-align: center; margin-top: 40px;">
+    <a href="{% url 'home' %}" class="btn">🏠 Back to Home</a>
+    <a href="{% url 'create_appointment' %}" class="btn btn-secondary" style="margin-left: 10px;">📅 Book Appointment</a>
+</div>
+
+<div style="max-width: 600px; margin: 40px auto; padding: 20px; background-color: #e7f3ff; border-left: 4px solid #2196F3; border-radius: 5px;">
+    <p style="margin: 0; color: #1565C0;">
+        <strong>💡 What's Next?</strong><br>
+        Our team will review your inquiry and respond via email. For urgent matters, please call us at (555) 123-4567.
+    </p>
+</div>
+{% endblock %}
