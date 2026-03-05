@@ -17,12 +17,14 @@
         
         <!-- Hairstyle Image -->
         {% if hairstyle.image_url %}
-        <div style="width: 100%; height: 250px; overflow: hidden; background-color: #f0f0f0;">
-            <img src="{{ hairstyle.image_url }}" 
-                 alt="{{ hairstyle.name }}"
-                 style="width: 100%; height: 100%; object-fit: cover;"
-                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/667eea/ffffff?text={{ hairstyle.name }}';">
-        </div>
+        <a href="{% url 'hairstyle_detail' hairstyle.pk %}" style="display: block;">
+            <div style="width: 100%; height: 250px; overflow: hidden; background-color: #f0f0f0;">
+                <img src="{{ hairstyle.image_url }}"
+                     alt="{{ hairstyle.name }}"
+                     style="width: 100%; height: 100%; object-fit: cover;"
+                     onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/667eea/ffffff?text={{ hairstyle.name }}';">
+            </div>
+        </a>
         {% else %}
         <!-- Placeholder if no image -->
         <div style="width: 100%; height: 250px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;">

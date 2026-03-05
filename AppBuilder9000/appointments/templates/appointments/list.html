@@ -25,20 +25,22 @@
                 <td style="padding: 12px;">{{ appointment.customer_name }}</td>
                 <td style="padding: 12px;">{{ appointment.customer_email }}</td>
                 <td style="padding: 12px;">{{ appointment.hairstyle.name }}</td>
-                <td style="padding: 12px;">{{ appointment.appointment_date }}</td>
+                <td style="padding: 12px;">{{ appointment.appointment_date|date:"M d, Y" }}</td>
                 <td style="padding: 12px;">{{ appointment.get_appointment_time_display }}</td>
                 <td style="padding: 12px; font-weight: bold; color: #28a745;">
                     ${{ appointment.get_cost }}
                 </td>
                 <td style="padding: 12px; text-align: center;">
                     <a href="{% url 'update_appointment' appointment.pk %}"
-                       style="color: #667eea; text-decoration: none; margin-right: 10px;">
+                       class="btn btn-secondary"
+                        style="margin-right: 5px; padding: 7px 16px 9px 16px;">
                         ✏️ Edit
                     </a>
-                    <a href="{% url 'delete_appointment' appointment.pk %}"
-                       style="color: #dc3545; text-decoration: none;">
+                    <button
+                        class="btn btn-danger"
+                        onclick="openDeleteModal({{ appointment.pk }})">
                         🗑️ Cancel
-                    </a>
+                    </button>
                 </td>
             </tr>
             {% endfor %}
@@ -60,4 +62,51 @@
 <div style="margin-top: 30px;">
     <a href="{% url 'create_appointment' %}" class="btn">➕ Book New Appointment</a>
 </div>
+
+<div id="deleteModal"
+     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1000;">
+
+    <div style="
+        background:white;
+        padding:30px;
+        max-width:400px;
+        margin:15% auto;
+        border-radius:12px;
+        text-align:center;
+    ">
+        <h3>Confirm Cancellation</h3>
+
+        <p style="margin:20px 0;">
+            Are you sure you want to cancel this appointment?
+        </p>
+
+        <form id="deleteForm" method="post">
+            {% csrf_token %}
+
+            <button type="submit" class="btn btn-danger" style="margin: 10px;">
+                Yes, Cancel Appointment
+            </button>
+
+            <button type="button"
+                    class="btn btn-secondary"
+                    onclick="closeDeleteModal()">
+                No, Go Back
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openDeleteModal(appointmentId) {
+        const form = document.getElementById("deleteForm");
+        form.action = `/appointments/delete/${appointmentId}/`;
+        document.getElementById("deleteModal").style.display = "block";
+    }
+
+    function closeDeleteModal() {
+        document.getElementById("deleteModal").style.display = "none";
+    }
+</script>
+
+
 {% endblock %}

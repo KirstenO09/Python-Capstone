@@ -6,19 +6,26 @@
 {% block button1 %}<a href="#apps" class="contact-btn">Portfolio</a>{% endblock %}
 {% block button2 %}<a href="#about" class="contact-btn">Contact Us</a>{% endblock %}
 
-{% block appcontent %}
+{% block content %}
 <section class="masonry-grid" id="apps">
-    <br><br>
-    <h2 class="sub-title">App Directory</h2>
-    <div class="grid">
-        <a href="/appointments/" class="app-card">
-            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900"
-                 alt="Salon Booking App">
-            <h3>Salon Booking</h3>
-            <p>Book appointments and explore hairstyle inspiration</p>
-        </a>
+    <h2 class="sub-title text-center">App Directory</h2>
+    <p class="directory-subtext text-center">
+        Click this Salon Booking App to explore its features
+    </p>
+
+    <div class="grid app-directory">
+        <div class="grid-item">
+            <a href="/appointments/" class="app-card">
+                <img src="https://www.salontrusted.com/blog/wp-content/uploads/2021/10/The-Top-5-Hair-Styling-Tools-Every-Beauty-Lover-Should-Have.jpg"
+                     alt="Salon Booking App">
+                <div class="app-card-body">
+                    <p>Book appointments and explore hairstyle inspiration</p>
+                </div>
+            </a>
+        </div>
     </div>
 </section>
+
 
 <section class="beating-heart" id="about">
     <div class="wrapper">

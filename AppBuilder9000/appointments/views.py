@@ -4,9 +4,10 @@ from .models import Appointment, Hairstyle, Inquiry
 from .forms import AppointmentForm, InquiryForm
 import requests
 from django.conf import settings
-from django.shortcuts import render
 from bs4 import BeautifulSoup
 import re
+
+
 
 def home(request):
     """
@@ -16,6 +17,11 @@ def home(request):
     hairstyles = Hairstyle.objects.filter(is_available=True)
     return render(request, 'appointments/home.html', {'hairstyles': hairstyles})
 
+def hairstyle_detail(request, pk):
+    hairstyle = get_object_or_404(Hairstyle, pk=pk)
+    return render(request, "appointments/hairstyle_detail.html", {
+        "hairstyle": hairstyle
+    })
 
 def create_appointment(request):
     """
@@ -97,8 +103,10 @@ def delete_appointment(request, pk):
         appointment.delete()
         messages.success(request, 'Appointment cancelled successfully.')
         return redirect('appointment_list')
+        # If someone visits the URL directly, just go back safely
+    return redirect("appointment_list")
 
-    return render(request, 'appointments/delete.html', {'appointment': appointment})
+    # return render(request, 'appointments/delete.html', {'appointment': appointment})
 
 
 def contact(request):

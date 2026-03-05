@@ -11,6 +11,9 @@ urlpatterns = [
     # Home page with hairstyle cards
     path("", views.home, name="home"),
 
+    # Hairstyles Detail Page
+    path("hairstyles/<int:pk>/", views.hairstyle_detail, name="hairstyle_detail"),
+
     # Booking form
     path("book/", views.create_appointment, name="create_appointment"),
 

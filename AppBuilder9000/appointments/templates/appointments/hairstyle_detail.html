@@ -1,0 +1,21 @@
+{% extends "appointments/base.html" %}
+
+{% block title %}{{ hairstyle.name }}{% endblock %}
+
+{% block content %}
+<div style="max-width: 800px; margin: auto; text-align: center;">
+    <h1>{{ hairstyle.name }}</h1>
+
+    <img src="{{ hairstyle.image_url }}"
+         alt="{{ hairstyle.name }}"
+         style="width: 100%; max-width: 600px; border-radius: 12px; margin: 20px 0;">
+
+    <p style="font-size: 18px; color: #555;">
+        {{ hairstyle.description }}
+    </p>
+
+    <a href="javascript:history.back()" class="btn" style="margin-top: 20px;">
+        ← Back to Home
+    </a>
+</div>
+{% endblock %}
