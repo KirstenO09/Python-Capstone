@@ -100,24 +100,57 @@ These services allow users to explore hairstyle options and select the one they 
 ```text
 Python-Capstone/
 │
-├── manage.py
-├── requirements.txt
-│
-├── AppBuilder9000/
-│   ├── settings.py
-│   ├── urls.py
-│   ├── views.py
-│   ├── models.py
-│   └── admin.py
-│
-├── templates/
-│
-├── static/
-│   ├── css/
-│   ├── images/
-│   └── javascript/
-│
-└── db.sqlite3
+├── node_modules
+├── gitignore
+├── __init__.py
+├── main.py
+├── README.md
+└── AppBuilder9000/
+    ├── pyVenv/
+    ├── .env
+    ├── db.sqlite3
+    ├── manage.py
+    ├── requirements.txt
+    ├── static/
+        ├── css/
+        ├── images/
+        └── js/
+    ├── templates
+        ├── Home/
+            ├── index.html
+        ├── base.html
+        └── footer.html
+    ├── AppBuilder9000/
+        ├── __init__.py
+        ├── admin.py
+        ├── settings.py
+        ├── urls.py
+        ├── views.py
+        └── wsgi.py
+    ├── appointments/
+        ├── migrations/
+        ├── __init__.py
+        ├── admin.py
+        ├── apps.py
+        ├── forms.py
+        ├── models.py
+        ├── test.py
+        ├── urls.py
+        ├── views.py
+        └── templates/
+            ├── appointments/
+                ├── base.html
+                ├── confirmation.html
+                ├── contact.html
+                ├── contact_confirmation.html
+                ├── create.html
+                ├── delete.html
+                ├── hairstyle_detail.html
+                ├── home.html
+                ├── inspiration_gallery.html
+                ├── list.html
+                ├── natural_hair_tips.html
+                └── update.html
 ```
 
 
