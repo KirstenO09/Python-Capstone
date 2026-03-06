@@ -80,7 +80,7 @@
             Are you sure you want to cancel this appointment?
         </p>
 
-        <form id="deleteForm" method="post">
+        <form id="deleteForm" method="post" data-url-template="{% url 'delete_appointment' 0 %}">
             {% csrf_token %}
 
             <button type="submit" class="btn btn-danger" style="margin: 10px;">
@@ -99,7 +99,8 @@
 <script>
     function openDeleteModal(appointmentId) {
         const form = document.getElementById("deleteForm");
-        form.action = `/appointments/delete/${appointmentId}/`;
+        let urlTemplate = form.dataset.urlTemplate;
+        form.action = `/appointments/appointments/cancel/${appointmentId}/`;
         document.getElementById("deleteModal").style.display = "block";
     }
 

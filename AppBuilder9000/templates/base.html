@@ -29,12 +29,12 @@
                 <header>
                     <nav class="nav-wrapper">
                         <div class="logo">
-                            <a href="{% url 'home' %}">
+                            <a href="#home">
                                 {% block nav-icon %}<img src="{% static 'images/png-icons/robot4.png' %}">{% endblock %}
                             </a>
                         </div>
                         <ul class="menu">
-                            <li><a href="{% block home-button %}{% url 'home' %}{% endblock %}">Home</a></li>
+                            <li><a href="#home">Home</a></li>
                             <li><a href="#about">About</a></li>
                             <li><a href="#apps">Apps</a></li>
                         </ul>
